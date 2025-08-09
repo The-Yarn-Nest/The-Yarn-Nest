@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Yarn Nest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+
+    header {
+      background: linear-gradient(to right, #e8d2f0, #d9b6e5);
+      border-radius: 20px;
+      padding: 40px 20px 60px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(106, 27, 154, 0.1);
+      animation: fadeInDown 1s ease;
+    }
+
+    header img {
+      width: 120px;
+      border-radius: 50%;
+      border: 3px solid #6a1b9a;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      background: white;
+      padding: 5px;
+      margin-bottom: 10px;
+      animation: scaleIn 1s ease;
+    }
+
+    header h1 {
+      font-family: 'Georgia', serif;
+      font-size: 36px;
+      color: #6a1b9a;
+      margin: 10px 0 8px;
+      letter-spacing: 1px;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .tagline {
+  font-size: 16px;
+  font-weight: 500;
+  color: #4a0072;
+  margin: 10px auto;
+  font-style: italic;
+  text-align: center;
+  max-width: 90%;
+  line-height: 1.6;
+}
+
+.custom-note {
+  font-size: 14px;
+  font-weight: 500;
+  color: black;
+  margin-top: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+
+
+    .cart-link {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 16px;
+    }
+
+    .cart-link a {
+      color: #6a1b9a;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .hamburger {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 1001;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #6a1b9a;
+      transition: 0.3s ease;
+    }
+
+    .menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 200px;
+      height: 100%;
+      background-color: #f3e8fb;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+      padding: 60px 20px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    .menu a {
+      display: block;
+      margin: 15px 0;
+      color: #6a1b9a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .menu a:hover {
+      color: #4a0072;
+    }
+
+    .menu.show {
+      left: 0;
+    }
+
+    @keyframes fadeInDown {
+      from { transform: translateY(-30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes scaleIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      padding: 10px;
+    }
+
+    .product {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      width: 45%;
+      max-width: 200px;
+      text-align: center;
+      padding: 10px;
+      margin: 5px;
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .product h3 {
+      margin: 10px 0 5px;
+    }
+
+    .product p {
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .product button {
+      margin-top: 10px;
+      padding: 6px 10px;
+      background-color: #6a1b9a;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .product button:hover {
+      background-color: #4a0072;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+
+    .lightbox .close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: #000;
+      color: white;
+      font-size: 28px;
+      padding: 6px 14px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .products { flex-direction: column; align-items: center; }
+      .product { width: 90%; }
+      header h1 { font-size: 28px; }
+      .cart-link { top: 10px; right: 20px; font-size: 14px; }
+    }
+
+    /* NEW FOOTER STYLE */
+    footer {
+      width: 100%;
+      background-color: #d9b6e5;
+      padding: 40px 20px;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+      gap: 30px;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-section h4 {
+      color: #000;
+      margin-bottom: 10px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-section li {
+      margin: 5px 0;
+    }
+
+    .footer-section a {
+      color: purple;
+      text-decoration: none;
+    }
+
+    .footer-section a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-logo img {
+      width: 130px;
+      border-radius: 50%;
+      border: 4px solid purple;
+      background: white;
+      padding: 10px;
+    }
+    .popup-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #6a1b9a;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+  pointer-events: none;
+  font-size: 16px;
+}
+
+.popup-message.show {
+  opacity: 1;
+}
+
+
+  
+
+
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Hamburger Icon -->
+<div class="hamburger" onclick="toggleMenu(event)">
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<!-- Side Menu -->
+<div class="menu" id="sideMenu">
+  <a href="home.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html">Cart</a>
+  <a href="order.html">Order</a>
+  <a href="myorders.html">My Orders</a>
+</div>
+
+<header>
+  <img src="logo.png" alt="Logo" />
+  <h1>The Yarn Nest</h1>
+  
+
+<p class="tagline">
+🧵🪡 Cozy Creations from Our Nest to Yours 🌸🏡
+</p>
+
+<p class="custom-note">
+ [Customized offerings priced accordingly]
+</p>
+
+  <div class="cart-link"><a href="cart.html">🛒 Cart</a></div>
+</header>
+  <div class="products">
+  <!-- Products --><!-- Continue from your original products list inside <div class="products"> -->
+
+  <div class="product">
+    <img src="Woolen hair band.jpg" onclick="showLightbox(this.src)" alt="Hair Band Scrunchie" />
+    <h3>Hair Band Scrunchie</h3>
+    <p>₹39</p>
+    <button onclick="addToCart('Hair Band Scrunchie(Blue)', 39)">Add to Cart</button>
+    <button onclick="orderNow('Hair Band Scrunchie(Blue)', 39)">Order Now</button>
+  </div>
+
+   <div class="product">
+    <img src="pink bookmark.jpg" onclick="showLightbox(this.src)" alt="Crochet Bookmark" />
+    <h3>Crochet Bookmark</h3>
+    <p>₹29</p>
+    <button onclick="addToCart('Crochet Bookmark(Peach)', 29)">Add to Cart</button>
+    <button onclick="orderNow('Crochet Bookmark(Peach)', 29)">Order Now</button>
+  </div>
+
+
+   <div class="product">
+    <img src="purple flower book mark.jpg" onclick="showLightbox(this.src)" alt="Crochet Bookmark" />
+    <h3>Crochet Bookmark</h3>
+    <p>₹29</p>
+    <button onclick="addToCart('Crochet Bookmark(Purple)', 29)">Add to Cart</button>
+    <button onclick="orderNow('Crochet Bookmark(Purple)', 29)">Order Now</button>
+  </div>
+
+  <div class="product">
+    <img src="flower.jpg" onclick="showLightbox(this.src)" alt="Pink Crochet Tulip" />
+    <h3>Pink Crochet Tulip</h3>
+    <p>₹65</p>
+    <button onclick="addToCart('Pink Crochet Tulip', 65)">Add to Cart</button>
+    <button onclick="orderNow('Pink Crochet Tulip', 65)">Order Now</button>
+  </div>
+
+   <div class="product">
+    <img src="red hair band.jpg" onclick="showLightbox(this.src)" alt="Hair Band Scrunchie" />
+    <h3>Hair Band Scrunchie</h3>
+    <p>₹39</p>
+    <button onclick="addToCart('Hair Band Scrunchie(Red)', 39)">Add to Cart</button>
+    <button onclick="orderNow('Hair Band Scrunchie(Red)', 39)">Order Now</button>
+  </div>
+  
+  <div class="product">
+    <img src="sunflower key chain.jpg" onclick="showLightbox(this.src)" alt="Sunflower Keychain" />
+    <h3>Sunflower Keychain</h3>
+    <p>₹49</p>
+    <button onclick="addToCart('Sunflower Keychain', 49)">Add to Cart</button>
+    <button onclick="orderNow('Sunflower Keychain', 49)">Order Now</button>
+  </div>
+<div class="product">
+    <img src="lavenderbookmark.jpg" onclick="showLightbox(this.src)" alt="Crochet Bookmark" />
+    <h3>Crochet Bookmark</h3>
+    <p>₹29</p>
+    <button onclick="addToCart('Crochet Bookmark(Lavender)', 29)">Add to Cart</button>
+    <button onclick="orderNow('Crochet Bookmark(Lavender)', 29)">Order Now</button>
+  </div>
+
+  <div class="product">
+    <img src="yellowflower.jpg" onclick="showLightbox(this.src)" alt="Yellow Crochet Lily" />
+    <h3>Yellow Crochet Lily</h3>
+    <p>₹85</p>
+    <button onclick="addToCart('Yellow Crochet Lily ', 85)">Add to Cart</button>
+    <button onclick="orderNow('Yellow Crochet Lily', 85)">Order Now</button>
+  </div>
+
+   <div class="product">
+  <img src="diningcrochet2.jpg" onclick="showLightbox(this.src)" alt="Crocheted Dining Mat" />
+  <h3>Crocheted Dining Mat</h3>
+  <p>₹39</p>
+  <button onclick="addToCart('Crocheted Dining Mat(Red)', 39)">Add to Cart</button>
+  <button onclick="orderNow('Crocheted Dining Mat(Red)', 39)">Order Now</button>
+</div>
+
+<div class="product">
+  <img src="diningcrochet1.jpg" onclick="showLightbox(this.src)" alt="Crocheted Dining Mat" />
+  <h3>Crocheted Dining Mat</h3>
+  <p>₹39</p>
+  <button onclick="addToCart('Crocheted Dining Mat(Pink)', 39)">Add to Cart</button>
+  <button onclick="orderNow('Crocheted Dining Mat(Pink)', 39)">Order Now</button>
+</div>
+<div class="product">
+  <img src="bouquet1.jpg" onclick="showLightbox(this.src)" alt="Bouquet(Pack of 3)" />
+  <h3>Bouquet(Pack of 3)</h3>
+  <p>₹249</p>
+  <button onclick="addToCart('Bouquet(Pack of 3)', 249)">Add to Cart</button>
+  <button onclick="orderNow('Bouquet(Pack of 3)', 249)">Order Now</button>
+</div>
+  <div class="product">
+    <img src="Bow Hair clip.jpg" onclick="showLightbox(this.src)" alt="Bow Hair Clip" />
+    <h3>Bow Hair Clip</h3>
+    <p>₹29</p>
+    <button onclick="addToCart('Bow Hair Clip', 29)">Add to Cart</button>
+    <button onclick="orderNow('Bow Hair Clip', 29)">Order Now</button>
+  </div>
+  
+  <div class="product">
+    <img src="mobile case.jpg" onclick="showLightbox(this.src)" alt="Crocheted Mobile Case" />
+    <h3>Crocheted Mobile Case</h3>
+    <p>₹129</p>
+    <button onclick="addToCart('Crocheted Mobile Case', 129)">Add to Cart</button>
+    <button onclick="orderNow('Crocheted Mobile Case', 129)">Order Now</button>
+  </div>
+  <div class="product">
+    <img src="Bouquet.jpg" onclick="showLightbox(this.src)" alt="Bouquet(Pack of 6)" />
+    <h3>Bouquet(Pack of 6)</h3>
+    <p>₹549</p>
+    <button onclick="addToCart('Bouquet(Pack of 6)', 549)">Add to Cart</button>
+    <button onclick="orderNow('Bouquet(Pack of 6)', 549)">Order Now</button>
+  </div>
+  <div class="product">
+    <img src="Keychain.jpg" onclick="showLightbox(this.src)" alt="Keychain" />
+    <h3>Crochet Bell Flower Keychain</h3>
+    <p>₹29</p>
+    <button onclick="addToCart('Crochet Bell Flower Keychain', 29)">Add to Cart</button>
+    <button onclick="orderNow('Crochet Bell Flower Keychain', 29)">Order Now</button>
+  </div>
+
+
+<div class="lightbox" id="lightbox">
+  <span class="close" onclick="hideLightbox()">×</span>
+  <img id="lightbox-img" src="" alt="Enlarged Image" />
+</div><!-- Your existing HTML content remains unchanged -->
+  <!-- ... -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section footer-logo">
+        <img src="logo.png" alt="The Yarn Nest Logo" />
+      </div>
+
+      <div class="footer-section">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="home.html" class="footer-link">Home</a></li>
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="faq.html" class="footer-link">FAQ</a></li>
+          <li><a href="contact.html" class="footer-link">Contact</a></li>
+          <li><a href="cart.html" class="footer-link">Cart</a></li>
+          <li><a href="order.html" class="footer-link">Order</a></li>
+          <li><a href="myorders.html" class="footer-link"> My Orders</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=theyarnnest.in@gmail.com">
+            theyarnnest.in@gmail.com
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Your existing JavaScript functions for toggleMenu, showLightbox, etc. -->
+  <script>
+    function toggleMenu(e) {
+      e.preventDefault();
+      const menu = document.getElementById('sideMenu');
+      menu.classList.toggle('show');
+    }
+
+    function showLightbox(src) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = src;
+      lightbox.style.display = 'flex';
+    }
+
+    function hideLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    function addToCart(name, price) {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.push({ name, price });
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert(`${name} (₹${price}) added to cart.`);
+}
+
+  
+
+    function orderNow(name, price) {
+      alert(`Ordering ${name} for ₹${price}.`);
+    }
+  </script>
+  <script>
+  function orderNow(productName, productPrice) {
+    const orderItem = [{ name: productName, price: productPrice }];
+    localStorage.setItem("cart", JSON.stringify(orderItem));
+    window.location.href = "order.html";
+  }
+  function addToCart(name, price) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name, price });
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  // Show popup
+  const popup = document.getElementById("popup");
+  popup.classList.add("show");
+  setTimeout(() => popup.classList.remove("show"), 2000);
+}
+
+function orderNow(name, price) {
+  let cart = [{ name, price }];
+  localStorage.setItem("cart", JSON.stringify(cart));
+  window.location.href = "order.html";
+}
+
+</script>
+<div id="popup" class="popup-message">🧺 Added to cart!</div>
+
+
+</body>
+</html>
