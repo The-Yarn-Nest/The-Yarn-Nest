@@ -7,7 +7,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-13EX1KGVQ0');
 </script>
   <meta charset="UTF-8" />
@@ -52,29 +51,27 @@
     }
 
     .tagline {
-  font-size: 16px;
-  font-weight: 500;
-  color: #4a0072;
-  margin: 10px auto;
-  font-style: italic;
-  text-align: center;
-  max-width: 90%;
-  line-height: 1.6;
-}
+      font-size: 16px;
+      font-weight: 500;
+      color: #4a0072;
+      margin: 10px auto;
+      font-style: italic;
+      text-align: center;
+      max-width: 90%;
+      line-height: 1.6;
+    }
 
-.custom-note {
-  font-size: 14px;
-  font-weight: 500;
-  color: black;
-  margin-top: 10px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-
+    .custom-note {
+      font-size: 14px;
+      font-weight: 500;
+      color: black;
+      margin-top: 10px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
 
     .cart-link {
       position: absolute;
@@ -151,23 +148,32 @@
       to { opacity: 1; }
     }
 
+    /* Updated product grid */
     .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
       gap: 16px;
       padding: 10px;
+      grid-template-columns: repeat(2, 1fr); /* Mobile default: 2 per row */
+    }
+
+    @media (min-width: 600px) {
+      .products {
+        grid-template-columns: repeat(4, 1fr); /* Tablet/Laptop: 4 per row */
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .products {
+        grid-template-columns: repeat(5, 1fr); /* Large screens: 5 per row */
+      }
     }
 
     .product {
       background: #fff;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      width: 45%;
-      max-width: 200px;
       text-align: center;
       padding: 10px;
-      margin: 5px;
     }
 
     .product img {
@@ -230,13 +236,6 @@
       cursor: pointer;
     }
 
-    @media (max-width: 600px) {
-      .products { flex-direction: column; align-items: center; }
-      .product { width: 90%; }
-      header h1 { font-size: 28px; }
-      .cart-link { top: 10px; right: 20px; font-size: 14px; }
-    }
-
     /* NEW FOOTER STYLE */
     footer {
       width: 100%;
@@ -290,42 +289,38 @@
       background: white;
       padding: 10px;
     }
+
     .popup-message {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #6a1b9a;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 999;
-  pointer-events: none;
-  font-size: 16px;
-}
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #6a1b9a;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 999;
+      pointer-events: none;
+      font-size: 16px;
+    }
 
-.popup-message.show {
-  opacity: 1;
-}
-
-
-  
-
+    .popup-message.show {
+      opacity: 1;
+    }
 
     @media (max-width: 768px) {
       .footer-container {
         flex-direction: column;
         align-items: center;
-
       }
     }
 
   </style>
 </head>
 <body>
-  <!-- Hamburger Icon -->
+<!-- Hamburger Icon -->
 <div class="hamburger" onclick="toggleMenu(event)">
   <div></div>
   <div></div>
@@ -346,21 +341,13 @@
 <header>
   <img src="logo.png" alt="Logo" />
   <h1>The Yarn Nest</h1>
-  
-
-<p class="tagline">
-🧵🪡 Cozy Creations from Our Nest to Yours 🌸🏡
-</p>
-
-<p class="custom-note">
- [Customized offerings priced accordingly]
-</p>
-
+  <p class="tagline">🧵🪡 Cozy Creations from Our Nest to Yours 🌸🏡</p>
+  <p class="custom-note">[Customized offerings priced accordingly]</p>
   <div class="cart-link"><a href="cart.html">🛒 Cart</a></div>
 </header>
-  <div class="products">
-  <!-- Products --><!-- Continue from your original products list inside <div class="products"> -->
 
+<!-- Products -->
+<div class="products">
   <div class="product">
     <img src="Woolen hair band.jpg" onclick="showLightbox(this.src)" alt="Hair Band Scrunchie" />
     <h3>Hair Band Scrunchie</h3>
@@ -476,103 +463,75 @@
     <button onclick="addToCart('Crochet Bell Flower Keychain', 29)">Add to Cart</button>
     <button onclick="orderNow('Crochet Bell Flower Keychain', 29)">Order Now</button>
   </div>
-
+  <!-- Keep your product items exactly as before -->
+  <!-- ... your product HTML here ... -->
+</div>
 
 <div class="lightbox" id="lightbox">
   <span class="close" onclick="hideLightbox()">×</span>
   <img id="lightbox-img" src="" alt="Enlarged Image" />
-</div><!-- Your existing HTML content remains unchanged -->
-  <!-- ... -->
+</div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-section footer-logo">
-        <img src="logo.png" alt="The Yarn Nest Logo" />
-      </div>
-
-      <div class="footer-section">
-        <h4>Explore</h4>
-        <ul>
-          <li><a href="home.html" class="footer-link">Home</a></li>
-          <li><a href="about.html" class="footer-link">About Us</a></li>
-          <li><a href="faq.html" class="footer-link">FAQ</a></li>
-          <li><a href="contact.html" class="footer-link">Contact</a></li>
-          <li><a href="cart.html" class="footer-link">Cart</a></li>
-          <li><a href="order.html" class="footer-link">Order</a></li>
-          <li><a href="myorders.html" class="footer-link"> My Orders</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-section">
-        <h4>Contact Us</h4>
-        <p>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=theyarnnest.in@gmail.com">
-            theyarnnest.in@gmail.com
-          </a>
-        </p>
-      </div>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-section footer-logo">
+      <img src="logo.png" alt="The Yarn Nest Logo" />
     </div>
-  </footer>
+    <div class="footer-section">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="home.html" class="footer-link">Home</a></li>
+        <li><a href="about.html" class="footer-link">About Us</a></li>
+        <li><a href="faq.html" class="footer-link">FAQ</a></li>
+        <li><a href="contact.html" class="footer-link">Contact</a></li>
+        <li><a href="cart.html" class="footer-link">Cart</a></li>
+        <li><a href="order.html" class="footer-link">Order</a></li>
+        <li><a href="myorders.html" class="footer-link">My Orders</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Contact Us</h4>
+      <p>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=theyarnnest.in@gmail.com">
+          theyarnnest.in@gmail.com
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
 
-  <!-- Your existing JavaScript functions for toggleMenu, showLightbox, etc. -->
-  <script>
-    function toggleMenu(e) {
-      e.preventDefault();
-      const menu = document.getElementById('sideMenu');
-      menu.classList.toggle('show');
-    }
+<script>
+  function toggleMenu(e) {
+    e.preventDefault();
+    document.getElementById('sideMenu').classList.toggle('show');
+  }
 
-    function showLightbox(src) {
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightbox-img');
-      lightboxImg.src = src;
-      lightbox.style.display = 'flex';
-    }
+  function showLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').style.display = 'flex';
+  }
 
-    function hideLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
-    }
+  function hideLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+  }
 
-    function addToCart(name, price) {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  cart.push({ name, price });
-  localStorage.setItem('cart', JSON.stringify(cart));
-  alert(`${name} (₹${price}) added to cart.`);
-}
+  function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    const popup = document.getElementById("popup");
+    popup.classList.add("show");
+    setTimeout(() => popup.classList.remove("show"), 2000);
+  }
 
-  
-
-    function orderNow(name, price) {
-      alert(`Ordering ${name} for ₹${price}.`);
-    }
-  </script>
-  <script>
-  function orderNow(productName, productPrice) {
-    const orderItem = [{ name: productName, price: productPrice }];
-    localStorage.setItem("cart", JSON.stringify(orderItem));
+  function orderNow(name, price) {
+    let cart = [{ name, price }];
+    localStorage.setItem("cart", JSON.stringify(cart));
     window.location.href = "order.html";
   }
-  function addToCart(name, price) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.push({ name, price });
-  localStorage.setItem("cart", JSON.stringify(cart));
-
-  // Show popup
-  const popup = document.getElementById("popup");
-  popup.classList.add("show");
-  setTimeout(() => popup.classList.remove("show"), 2000);
-}
-
-function orderNow(name, price) {
-  let cart = [{ name, price }];
-  localStorage.setItem("cart", JSON.stringify(cart));
-  window.location.href = "order.html";
-}
-
 </script>
+
 <div id="popup" class="popup-message">🧺 Added to cart!</div>
-
-
 </body>
 </html>
