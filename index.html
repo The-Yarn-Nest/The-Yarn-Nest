@@ -1,92 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-13EX1KGVQ0"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+  <!-- Google tag (gtag.js) -->  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-13EX1KGVQ0"></script>  
+<script>  
+  window.dataLayer = window.dataLayer || [];  
+  function gtag(){dataLayer.push(arguments);}  
+  gtag('js', new Date());  gtag('config', 'G-13EX1KGVQ0');
+</script>
+<meta charset="UTF-8">
 
-    gtag('config', 'G-13EX1KGVQ0');
-  </script>
-  <meta charset="UTF-8" />
-  <title>The Yarn Nest</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <title>The Yarn Nest</title>  
+  <style>  
+    * {  
+      margin: 0;  
+      padding: 0;  
+      box-sizing: border-box;  
+    }  body {  
+  background-color: #fdf4fc;  
+  display: flex;  
+  flex-direction: column;  
+  justify-content: center;  
+  align-items: center;  
+  height: 100vh;  
+  font-family: 'Segoe UI', sans-serif;  
+}  
 
-    body {
-      background-color: #fdf4fc;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: 'Segoe UI', sans-serif;
-    }
+.logo {  
+  width: 150px;  
+  border-radius: 50%;  
+  object-fit: cover;  
+  margin-bottom: 20px;  
+}  
 
-    .logo {
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 20px;
-    }
+.loading-text {  
+  font-size: 18px;  
+  color: #6a1b9a;  
+  display: flex;  
+  align-items: center;  
+}  
 
-    .loading-text {
-      font-size: 18px;
-      color: #6a1b9a;
-      display: flex;
-      align-items: center;
-    }
+.dot {  
+  height: 8px;  
+  width: 8px;  
+  margin: 0 3px;  
+  background-color: #6a1b9a;  
+  border-radius: 50%;  
+  animation: bounce 1.4s infinite;  
+}  
 
-    .dot {
-      height: 8px;
-      width: 8px;
-      margin: 0 3px;
-      background-color: #6a1b9a;
-      border-radius: 50%;
-      animation: bounce 1.4s infinite;
-    }
+.dot:nth-child(2) {  
+  animation-delay: 0.2s;  
+}  
 
-    .dot:nth-child(2) {
-      animation-delay: 0.2s;
-    }
+.dot:nth-child(3) {  
+  animation-delay: 0.4s;  
+}  
 
-    .dot:nth-child(3) {
-      animation-delay: 0.4s;
-    }
+@keyframes bounce {  
+  0%, 80%, 100% {  
+    transform: scale(0.8);  
+    opacity: 0.4;  
+  }  
+  40% {  
+    transform: scale(1.4);  
+    opacity: 1;  
+  }  
+}
 
-    @keyframes bounce {
-      0%, 80%, 100% {
-        transform: scale(0.8);
-        opacity: 0.4;
-      }
-      40% {
-        transform: scale(1.4);
-        opacity: 1;
-      }
-    }
-  </style>
-
-  <script>
-    setTimeout(() => {
-      window.location.href = "home.html"; // redirect after 3 seconds
-    }, 3000);
-  </script>
-</head>
-<body>
-  <img src="logo.png" alt="The Yarn Nest Logo" class="logo" />
-  <div class="loading-text">
-    Loading
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
-</body>
-</html>
-
+  </style>    <script>  
+    setTimeout(() => {  
+      window.location.href = "home.html"; // redirect after 3 seconds  
+    }, 3000);  
+  </script>  </head>  
+<body>  
+  <img src="logo.png" alt="The Yarn Nest Logo" class="logo">  
+  <div class="loading-text">  
+    Loading  
+    <span class="dot"></span>  
+    <span class="dot"></span>  
+    <span class="dot"></span>  
+  </div>  
+</body>  
+</html> this is my logo loading page I want my logo bigger but in round size to locate at the center
