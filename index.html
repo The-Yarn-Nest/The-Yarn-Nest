@@ -65,33 +65,11 @@
     }
   </style>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyB6Eg-LcldmRn0UHdUN65DxHraJLv0Xfmw",
-      authDomain: "the-yarn-nest-6b05f.firebaseapp.com",
-      projectId: "the-yarn-nest-6b05f",
-      storageBucket: "the-yarn-nest-6b05f.firebasestorage.app",
-      messagingSenderId: "804872807159",
-      appId: "1:804872807159:web:ae99a190e2884ab838e9f2"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // Logged in → go to home instantly
-        window.location.href = "home.html";
-      } else {
-        // Not logged in → show logo for 3 seconds
-        setTimeout(() => {
-          window.location.href = "signin.html";
-        }, 3000);
-      }
-    });
+  <script>
+    // Redirect to home.html after short delay
+    setTimeout(() => {
+      window.location.href = "home.html";
+    }, 3000);
   </script>
 </head>
 <body>
