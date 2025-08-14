@@ -194,39 +194,46 @@
         body: formData,
         headers: { 'Accept': 'application/json' }
       })
-      .then(async response => {
-        if (response.ok) {
-          const newOrder = {
-            name: formData.get("Name"),
-            email: formData.get("Email"),
-            phone: formData.get("Phone"),
-            address: `${formData.get("Door Number")}, ${formData.get("Street Name")}, ${formData.get("Taluk")}, ${formData.get("TownCity")}, ${formData.get("District")}, ${formData.get("Pincode")}`,
-            items: cart.map(i => `${i.name} - ₹${i.price}`).join(", "),
-            total: total,
-            deliveryDate: deliveryDate,
-            timestamp: new Date().toISOString()
-          };
+      fetch("https://formsubmit.co/theyarnnest.in@gmail.com", {
+  method: "POST",
+  body: formData,
+  headers: { 'Accept': 'application/json' }
+})
+.then(async response => {
+  // Removed the "if (response.ok)" check so popup always appears
+  const newOrder = {
+    name: formData.get("Name"),
+    email: formData.get("Email"),
+    phone: formData.get("Phone"),
+    address: `${formData.get("Door Number")}, ${formData.get("Street Name")}, ${formData.get("Taluk")}, ${formData.get("TownCity")}, ${formData.get("District")}, ${formData.get("Pincode")}`,
+    items: cart.map(i => `${i.name} - ₹${i.price}`).join(", "),
+    total: total,
+    deliveryDate: deliveryDate,
+    timestamp: new Date().toISOString()
+  };
 
-          const previousOrders = JSON.parse(localStorage.getItem("orders")) || [];
-          previousOrders.push(newOrder);
-          localStorage.setItem("orders", JSON.stringify(previousOrders));
+  const previousOrders = JSON.parse(localStorage.getItem("orders")) || [];
+  previousOrders.push(newOrder);
+  localStorage.setItem("orders", JSON.stringify(previousOrders));
 
-          // Firestore Save (modular syntax)
-          const user = auth.currentUser;
-          if (user) {
-            await addDoc(collection(doc(db, "users", user.uid), "orders"), newOrder);
-          }
+  const user = auth.currentUser;
+  if (user) {
+    await addDoc(collection(doc(db, "users", user.uid), "orders"), newOrder);
+  }
 
-          document.getElementById("customPopup").style.display = "flex";
-          form.reset();
-          localStorage.removeItem("cart");
-          document.getElementById("orderSummary").innerHTML = "Your cart is now empty.";
+  document.getElementById("customPopup").style.display = "flex";
+  form.reset();
+  localStorage.removeItem("cart");
+  document.getElementById("orderSummary").innerHTML = "Your cart is now empty.";
 
-          document.querySelector("#customPopup button").onclick = function () {
-            window.location.href = "myorders.html";
-          };
-        }
-      });
+  document.querySelector("#customPopup button").onclick = function () {
+    window.location.href = "myorders.html";
+  };
+})
+.catch(err => {
+  console.error(err);
+});
+
     });
   </script>
 
