@@ -1,288 +1,135 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-13EX1KGVQ0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <!-- Google tag (gtag.js) -->  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-13EX1KGVQ0"></script>  
+<script>  
+  window.dataLayer = window.dataLayer || [];  
+  function gtag(){dataLayer.push(arguments);}  
+  gtag('js', new Date());  
+  gtag('config', 'G-13EX1KGVQ0');  
+</script>  
+  <meta charset="UTF-8" />  
+  <title>Order Details</title>  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+  <style>  
+    body { font-family: 'Segoe UI', sans-serif; background: #fdf8ff; margin: 0; padding: 0; }
+    h1 { text-align: center; color: #6a1b9a; margin-top: 40px; }
+    form { background: #fff; max-width: 600px; margin: 30px auto; padding: 25px 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+    label { display: block; margin: 15px 0 6px; font-weight: 600; }
+    input { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box; font-size: 15px; }
+    .summary { background: #f4e1fb; padding: 15px; margin-bottom: 20px; border-radius: 8px; color: #4a005e; font-weight: 500; font-size: 15px; line-height: 1.6; }
+    button { background: #6a1b9a; color: white; padding: 12px 18px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; width: 100%; margin-top: 20px; transition: background 0.3s; }
+    button:hover { background: #530f7e; }
+    .back { text-align: center; margin: 20px auto 40px; }
+    #customPopup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(102, 51, 153, 0.4); display: flex; align-items: center; justify-content: center; z-index: 9999; }
+    .popup-content { background: #f3e5f5; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); animation: popIn 0.4s ease; }
+    .popup-content h2 { margin-top: 0; color: #6a1b9a; font-size: 24px; }
+    .popup-content p { color: #4a005e; font-size: 16px; margin-bottom: 20px; }
+    .popup-content button { padding: 10px 20px; background: #6a1b9a; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; }
+    .popup-content button:hover { background: #4a005e; }
+    @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .back a { text-decoration: none; color: #6a1b9a; font-weight: 600; }
+    footer { background-color: #d9b6e5; padding: 40px 20px; }
+    .footer-container { max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 60px; }
+    .footer-logo img { width: 150px; border-radius: 50%; border: 4px solid purple; background: white; padding: 10px; }
+    .footer-section h4 { color: #000; margin-bottom: 12px; }
+    .footer-section ul { list-style: none; padding: 0; margin: 0; }
+    .footer-link { color: #4a005e; text-decoration: none; display: block; margin-bottom: 8px; }
+    .footer-link:hover { text-decoration: underline; }
+    @media (max-width: 768px) { .footer-container { flex-direction: column; text-align: center; } form { margin: 20px; } .summary { text-align: left; } }
+  </style>  
+</head>  
+<body>  
 
-  gtag('config', 'G-13EX1KGVQ0');
-</script>
-  <meta charset="UTF-8" />
-  <title>Order Details</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #fdf8ff;
-      margin: 0;
-      padding: 0;
-    }
+  <h1>Delivery Details</h1>  
+  <form id="orderForm">  
+    <div class="summary" id="orderSummary">Loading summary...</div>  
 
-    h1 {
-      text-align: center;
-      color: #6a1b9a;
-      margin-top: 40px;
-    }
+    <label for="name">Full Name *</label>  
+    <input type="text" name="Name" id="name" required>  
 
-    form {
-      background: #fff;
-      max-width: 600px;
-      margin: 30px auto;
-      padding: 25px 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
+    <label for="email">Email *</label>  
+    <input type="email" name="Email" id="email" required>  
 
-    label {
-      display: block;
-      margin: 15px 0 6px;
-      font-weight: 600;
-    }
+    <label for="phone">Phone Number *</label>  
+    <input type="tel" name="Phone" id="phone" required>  
 
-    input {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-      font-size: 15px;
-    }
+    <label for="door">Door Number *</label>  
+    <input type="text" name="Door Number" id="door" required>  
 
-    .summary {
-      background: #f4e1fb;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      color: #4a005e;
-      font-weight: 500;
-      font-size: 15px;
-      line-height: 1.6;
-    }
+    <label for="street">Street Name *</label>  
+    <input type="text" name="Street Name" id="street" required>  
 
-    button {
-      background: #6a1b9a;
-      color: white;
-      padding: 12px 18px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      width: 100%;
-      margin-top: 20px;
-      transition: background 0.3s;
-    }
+    <label for="taluk">Taluk *</label>  
+    <input type="text" name="Taluk" id="taluk" required>  
 
-    button:hover {
-      background: #530f7e;
-    }
+    <label for="townCity">Town / City *</label>  
+    <input type="text" name="TownCity" id="townCity" required>  
 
-    .back {
-      text-align: center;
-      margin: 20px auto 40px;
-    }
+    <label for="district">District *</label>  
+    <input type="text" name="District" id="district" required>  
 
-    #customPopup {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(102, 51, 153, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
+    <label for="landmark">Landmark(Optional)</label>  
+    <input type="text" name="Landmark" id="landmark">  
 
-    .popup-content {
-      background: #f3e5f5;
-      padding: 30px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      animation: popIn 0.4s ease;
-    }
+    <label for="pincode">Pincode *</label>  
+    <input type="text" name="Pincode" id="pincode" required>  
 
-    .popup-content h2 {
-      margin-top: 0;
-      color: #6a1b9a;
-      font-size: 24px;
-    }
+    <input type="hidden" name="_subject" value="New Order Received">  
+    <input type="hidden" name="_captcha" value="false">  
+    <input type="hidden" name="Order Summary" id="orderSummaryField">  
 
-    .popup-content p {
-      color: #4a005e;
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
+    <button type="submit">Place Order</button>  
+  </form>  
 
-    .popup-content button {
-      padding: 10px 20px;
-      background: #6a1b9a;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 15px;
-    }
+  <div class="back">  
+    <a href="home.html">← Back to Home</a>  
+  </div>  
 
-    .popup-content button:hover {
-      background: #4a005e;
-    }
+  <footer>  
+    <div class="footer-container">  
+      <div class="footer-logo">  
+        <img src="logo.png" alt="The Yarn Nest Logo">  
+      </div>  
+      <div class="footer-section">  
+        <h4>Explore</h4>  
+        <ul>  
+          <li><a href="home.html" class="footer-link">Home</a></li>  
+          <li><a href="about.html" class="footer-link">About Us</a></li>  
+          <li><a href="faq.html" class="footer-link">FAQ</a></li>  
+          <li><a href="contact.html" class="footer-link">Contact</a></li>  
+          <li><a href="cart.html" class="footer-link">Cart</a></li>  
+          <li><a href="order.html" class="footer-link">Order</a></li>  
+          <li><a href="myorders.html" class="footer-link">My Orders</a></li>  
+        </ul>  
+      </div>  
+      <div class="footer-section">  
+        <h4>Contact Us</h4>  
+        <p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=theyarnnest.in@gmail.com" style="color: purple; text-decoration: none;">theyarnnest.in@gmail.com</a></p>  
+      </div>  
+    </div>  
+  </footer>  
 
-    @keyframes popIn {
-      from {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
+  <!-- Firebase Modular SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, doc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-    .back a {
-      text-decoration: none;
-      color: #6a1b9a;
-      font-weight: 600;
-    }
+    const firebaseConfig = {
+      apiKey: "AIzaSyB6Eg-LcldmRn0UHdUN65DxHraJLv0Xfmw",
+      authDomain: "the-yarn-nest-6b05f.firebaseapp.com",
+      projectId: "the-yarn-nest-6b05f",
+      storageBucket: "the-yarn-nest-6b05f.appspot.com",
+      messagingSenderId: "804872807159",
+      appId: "1:804872807159:web:ae99a190e2884ab838e9f2"
+    };
 
-    footer {
-      background-color: #d9b6e5;
-      padding: 40px 20px;
-    }
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
-    .footer-container {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 60px;
-    }
-
-    .footer-logo img {
-      width: 150px;
-      border-radius: 50%;
-      border: 4px solid purple;
-      background: white;
-      padding: 10px;
-    }
-
-    .footer-section h4 {
-      color: #000;
-      margin-bottom: 12px;
-    }
-
-    .footer-section ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .footer-link {
-      color: #4a005e;
-      text-decoration: none;
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .footer-link:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .footer-container {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      form {
-        margin: 20px;
-      }
-
-      .summary {
-        text-align: left;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <h1>Delivery Details</h1>
-
-  <form id="orderForm">
-    <div class="summary" id="orderSummary">Loading summary...</div>
-
-    <label for="name">Full Name *</label>
-    <input type="text" name="Name" id="name" required>
-
-    <label for="email">Email *</label>
-    <input type="email" name="Email" id="email" required>
-
-    <label for="phone">Phone Number *</label>
-    <input type="tel" name="Phone" id="phone" required>
-
-    <label for="door">Door Number *</label>
-    <input type="text" name="Door Number" id="door" required>
-
-    <label for="street">Street Name *</label>
-    <input type="text" name="Street Name" id="street" required>
-
-    <label for="taluk">Taluk *</label>
-    <input type="text" name="Taluk" id="taluk" required>
-
-    <label for="townCity">Town / City *</label>
-    <input type="text" name="TownCity" id="townCity" required>
-
-    <label for="district">District *</label>
-    <input type="text" name="District" id="district" required>
-
-    <label for="landmark">Landmark(Optional)</label>
-    <input type="text" name="Landmark" id="landmark">
-
-    <label for="pincode">Pincode *</label>
-    <input type="text" name="Pincode" id="pincode" required>
-
-    <input type="hidden" name="_subject" value="New Order Received">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="Order Summary" id="orderSummaryField">
-
-    <button type="submit">Place Order</button>
-  </form>
-
-  <div class="back">
-    <a href="home.html">← Back to Home</a>
-  </div>
-
-  <footer>
-    <div class="footer-container">
-      <div class="footer-logo">
-        <img src="logo.png" alt="The Yarn Nest Logo">
-      </div>
-      <div class="footer-section">
-        <h4>Explore</h4>
-        <ul>
-          <li><a href="home.html" class="footer-link">Home</a></li>
-          <li><a href="about.html" class="footer-link">About Us</a></li>
-          <li><a href="faq.html" class="footer-link">FAQ</a></li>
-          <li><a href="contact.html" class="footer-link">Contact</a></li>
-          <li><a href="cart.html" class="footer-link">Cart</a></li>
-          <li><a href="order.html" class="footer-link">Order</a></li>
-           <li><a href="myorders.html" class="footer-link"> My Orders</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Contact Us</h4>
-        <p><a href="mailto:theyarnnest.in@gmail.com" style="color: purple; text-decoration: none;">theyarnnest.in@gmail.com</a></p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
     function closePopup() {
       document.getElementById("customPopup").style.display = "none";
     }
@@ -306,7 +153,7 @@
     document.getElementById("orderSummaryField").value =
       cart.map(i => `${i.name} - ₹${i.price}`).join(", ") + ` | Total: ₹${total}`;
 
-    document.getElementById("orderForm").addEventListener("submit", function (e) {
+    document.getElementById("orderForm").addEventListener("submit", async function (e) {
       e.preventDefault();
 
       const form = e.target;
@@ -315,36 +162,31 @@
       const district = document.getElementById("district").value.trim().toLowerCase();
       const pincode = document.getElementById("pincode").value.trim();
 
-      // Define delivery days by district or pincode
-      // Define delivery days by district or pincode
-const deliveryMapping = {
-  'chennai': 7,
-  'madurai': 8,
-  'coimbatore': 8,
-  'tirunelveli': 8,
-  'cuddalore': 3,
-  'trichy': 4,
-  'perambalur': 4,
-  'kallakuruchi':4,
-  '600001': 7,
-  '627001': 8,
-  'default': 10
-};
+      const deliveryMapping = {
+        'chennai': 7,
+        'madurai': 8,
+        'coimbatore': 8,
+        'tirunelveli': 8,
+        'cuddalore': 3,
+        'trichy': 4,
+        'perambalur': 4,
+        'kallakuruchi': 4,
+        '600001': 7,
+        '627001': 8,
+        'default': 10
+      };
 
-let deliveryDays = deliveryMapping[district] || deliveryMapping[pincode] || deliveryMapping['default'];
-
+      let deliveryDays = deliveryMapping[district] || deliveryMapping[pincode] || deliveryMapping['default'];
 
       const today = new Date();
       today.setDate(today.getDate() + deliveryDays);
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       const deliveryDate = today.toLocaleDateString(undefined, options);
 
-      // Update popup message
-      document.querySelector(".popup-content p").innerHTML = `Your order has been placed successfully 🎉<br>
-       Note: Your order will get confirmed only after <br>
-       payment.We’ll get back to you shortly<br>
-        regarding the payment.<br>
-      
+      document.querySelector(".popup-content p").innerHTML = `Your order has been placed successfully 🎉<br>  
+       Note: Your order will get confirmed only after <br>  
+       payment.We’ll get back to you shortly<br>  
+        regarding the payment.<br>  
       <strong>Expected delivery:</strong> ${deliveryDate}`;
 
       fetch("https://formsubmit.co/theyarnnest.in@gmail.com", {
@@ -352,47 +194,48 @@ let deliveryDays = deliveryMapping[district] || deliveryMapping[pincode] || deli
         body: formData,
         headers: { 'Accept': 'application/json' }
       })
-      .then(response => {
-       if (response.ok) {
-  // Save order locally to localStorage
-    const newOrder = {
-    name: formData.get("Name"),
-    email: formData.get("Email"),
-    phone: formData.get("Phone"),
-    address: `${formData.get("Door Number")}, ${formData.get("Street Name")}, ${formData.get("Taluk")}, ${formData.get("TownCity")}, ${formData.get("District")}, ${formData.get("Pincode")}`,
-    items: cart.map(i => `${i.name} - ₹${i.price}`).join(", "),
-    total: total,
-    deliveryDate: deliveryDate
-  };
+      .then(async response => {
+        if (response.ok) {
+          const newOrder = {
+            name: formData.get("Name"),
+            email: formData.get("Email"),
+            phone: formData.get("Phone"),
+            address: `${formData.get("Door Number")}, ${formData.get("Street Name")}, ${formData.get("Taluk")}, ${formData.get("TownCity")}, ${formData.get("District")}, ${formData.get("Pincode")}`,
+            items: cart.map(i => `${i.name} - ₹${i.price}`).join(", "),
+            total: total,
+            deliveryDate: deliveryDate,
+            timestamp: new Date().toISOString()
+          };
 
-  const previousOrders = JSON.parse(localStorage.getItem("orders")) || [];
-  previousOrders.push(newOrder);
-  localStorage.setItem("orders", JSON.stringify(previousOrders));
+          const previousOrders = JSON.parse(localStorage.getItem("orders")) || [];
+          previousOrders.push(newOrder);
+          localStorage.setItem("orders", JSON.stringify(previousOrders));
 
+          // Firestore Save (modular syntax)
+          const user = auth.currentUser;
+          if (user) {
+            await addDoc(collection(doc(db, "users", user.uid), "orders"), newOrder);
+          }
 
-  // Show popup
-  document.getElementById("customPopup").style.display = "flex";
-  form.reset();
-  localStorage.removeItem("cart");
-  document.getElementById("orderSummary").innerHTML = "Your cart is now empty.";
+          document.getElementById("customPopup").style.display = "flex";
+          form.reset();
+          localStorage.removeItem("cart");
+          document.getElementById("orderSummary").innerHTML = "Your cart is now empty.";
 
-  // Redirect to myorders.html after popup button
-  document.querySelector("#customPopup button").onclick = function () {
-    window.location.href = "myorders.html";
-  };
-}
-
+          document.querySelector("#customPopup button").onclick = function () {
+            window.location.href = "myorders.html";
+          };
+        }
       });
     });
   </script>
 
-  <div id="customPopup" style="display: none;">
-    <div class="popup-content">
-      <h2>Thank you!</h2>
-      <p>Your order has been placed successfully 🎉
-     </p>
-      <button onclick="closePopup()">OK</button>
-    </div>
-  </div>
-</body>
+  <div id="customPopup" style="display: none;">  
+    <div class="popup-content">  
+      <h2>Thank you!</h2>  
+      <p>Your order has been placed successfully 🎉</p>  
+      <button onclick="closePopup()">OK</button>  
+    </div>  
+  </div>  
+</body>  
 </html>
