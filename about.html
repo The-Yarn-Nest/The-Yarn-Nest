@@ -37,6 +37,48 @@
     p {
       line-height: 1.8;
     }
+
+    /* Footer Styles */
+    footer {
+      background-color: #ddc2e5;
+      padding: 40px 20px;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+    }
+
+    footer img {
+      width: 150px;
+      border-radius: 90%;
+      border: 3px solid #6a1b9a;
+      background: white;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    footer h4 {
+      margin-bottom: 10px;
+    }
+
+    footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    footer ul li {
+      margin: 5px 0;
+    }
+
+    .footer-link {
+      text-decoration: none;
+      color: #6a1b9a;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: #4a0072;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -50,66 +92,24 @@
 
     <p>Thank you for supporting handmade art and our small business dream! 💜</p>
   </div>
-<footer style="background-color: #ddc2e5; padding: 40px 20px; font-family: 'Segoe UI', sans-serif;">
-  <div class="footer-container" style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 20px;">
-    
-    <!-- Logo -->
-    <div class="footer-logo" style="flex: 1; min-width: 200px; margin-bottom: 20px; text-align: center;">
-      <img src="logo.png" alt="The Yarn Nest Logo" style="width: 150px; border-radius: 90%; border: 3px solid #6a1b9a; background: white; padding: 10px;">
-    </div>
 
-    <!-- Navigation Links -->
-    <div class="footer-section" style="flex: 1; min-width: 200px; margin-bottom: 20px;">
-      <h4>Explore</h4>
-      <ul style="list-style: none; padding: 0;">
-        <li><a href="home.html" class="footer-link">Home</a></li>
-        <li><a href="about.html" class="footer-link">About Us</a></li>
-        <li><a href="faq.html" class="footer-link">FAQ</a></li>
-        <li><a href="contact.html" class="footer-link">Contact</a></li>
-        <li><a href="cart.html" class="footer-link">Cart</a></li>
-        <li><a href="order.html" class="footer-link">Order</a></li>
-         <li><a href="myorders.html" class="footer-link"> My Orders</a></li>
-      </ul>
-    </div>
-
-    <!-- Contact Info -->
-    <div class="footer-section" style="flex: 1; min-width: 200px; margin-bottom: 20px;">
-      <h4>Contact Us</h4>
-      <p>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=theyarnnest.in@gmail.com" target="_blank" class="footer-link" style="color: #6a1b9a; text-decoration: none;">
-          theyarnnest.in@gmail.com
-        </a>
-      </p>
-    </div>
-  </div>
+<footer>
+    <img src="logo.png" alt="The Yarn Nest Logo">
+    <h4>Explore</h4>
+    <ul>
+      <li><a href="home.html" class="footer-link">Home</a></li>
+      <li><a href="about.html" class="footer-link">About Us</a></li>
+      <li><a href="faq.html" class="footer-link">FAQ</a></li>
+      <li><a href="contact.html" class="footer-link">Contact</a></li>
+      <li><a href="cart.html" class="footer-link">Cart</a></li>
+      <li><a href="order.html" class="footer-link">Order</a></li>
+      <li><a href="myorders.html" class="footer-link">My Orders</a></li>
+    </ul>
+    <h4>Contact Us</h4>
+    <p>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=theyarnnest.in@gmail.com" class="footer-link">theyarnnest.in@gmail.com</a>
+    </p>
 </footer>
-
-<style>
-  .footer-link {
-    text-decoration: none;
-    color: #6a1b9a;
-    transition: color 0.3s ease;
-  }
-
-  .footer-link:hover {
-    color: #4a0072;
-    text-decoration: underline;
-  }
-
-  @media (max-width: 768px) {
-    .footer-container {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .footer-section {
-      width: 100%;
-    }
-  }
-</style>
-
-<!-- ⬆️ Footer End -->
   
 </body>
 </html>
