@@ -18,6 +18,13 @@
       padding: 0;
       box-sizing: border-box;
     }
+
+    html, body {
+      overflow: hidden;   /* disables both horizontal & vertical scrolling */
+      height: 100%;       /* ensures full screen */
+      width: 100%;
+    }
+
     body {
       background-color: #fdf4fc;
       display: flex;
@@ -64,13 +71,13 @@
       }
     }
   </style>
-
-  <script>
+<script>
     // Redirect to home.html after short delay
     setTimeout(() => {
       window.location.href = "home.html";
     }, 3000);
   </script>
+  
 </head>
 <body>
   <img src="logo.png" alt="The Yarn Nest Logo" class="logo">
