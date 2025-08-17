@@ -13,6 +13,49 @@
   <title>The Yarn Nest</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    /* Banner slide-down animation */
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Glowing text animation */
+@keyframes pulseGlow {
+  0% { text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700; }
+  50% { text-shadow: 0 0 15px #ffeb3b, 0 0 25px #ffd700; }
+  100% { text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700; }
+}
+
+/* Banner container */
+#deliveryBanner {
+  background: linear-gradient(90deg, #6a1b9a, #9c27b0);
+  color: white;
+  text-align: center;
+  padding: 14px 10px;
+  font-weight: 600;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  font-size: 17px;
+  letter-spacing: 0.3px;
+  animation: slideDown 0.6s ease-out;
+}
+
+/* Highlighted glowing text */
+.highlight-text {
+  color: #ffd700;
+  font-weight: 700;
+  animation: pulseGlow 1.5s infinite;
+}
+
+/* Spacer to prevent content overlap */
+.banner-spacer {
+  height: 60px;
+}
+
     html, body {
   margin: 0;
   padding: 0;
@@ -83,9 +126,9 @@
 
     .cart-link {
       position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 16px;
+      top: 50px;
+      right: 20px;
+      font-size: 18px;
     }
 
     .cart-link a {
@@ -96,7 +139,7 @@
 
     .hamburger {
       position: absolute;
-      top: 20px;
+      top: 110px;
       left: 20px;
       cursor: pointer;
       display: flex;
@@ -341,6 +384,20 @@
   </style>
 </head>
 <body>
+  <!-- Delivery Info Banner -->
+<div id="deliveryBanner">
+  🚚<span style="font-size:17px;">Enjoy 
+    <span class="highlight-text">FREE Delivery</span> 
+    on orders above ₹200</span><br>
+  🛍️ Orders below ₹200 will have a delivery</br> fee of <strong>₹50</strong>.
+</div>
+
+<!-- Spacer so content isn’t hidden behind banner -->
+<div class="banner-spacer"></div>
+
+
+
+
 <!-- Hamburger Icon -->
 <div class="hamburger" onclick="toggleMenu(event)">
   <div></div>

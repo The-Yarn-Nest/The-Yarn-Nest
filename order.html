@@ -282,109 +282,115 @@
     </div>
   </footer>
 
-  <script>
-    function closePopup() {
-      document.getElementById("customPopup").style.display = "none";
-    }
 
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let summaryHTML = "";
-    let total = 0;
+   <script>
+  function closePopup() {
+    document.getElementById("customPopup").style.display = "none";
+  }
 
-    if (cart.length > 0) {
-      summaryHTML = "<ul>";
-      cart.forEach(item => {
-        summaryHTML += `<li>${item.name} - ₹${item.price}</li>`;
-        total += item.price;
-      });
-      summaryHTML += `</ul><strong>Total: ₹${total}</strong>`;
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let summaryHTML = "";
+  let total = 0;
+  let deliveryCharge = 0;
+
+  if (cart.length > 0) {
+    summaryHTML = "<ul>";
+    cart.forEach(item => {
+      summaryHTML += `<li>${item.name} - ₹${item.price}</li>`;
+      total += item.price;
+    });
+    summaryHTML += "</ul>";
+
+    if (total < 200) {
+      deliveryCharge = 50;
+      summaryHTML += `<p>Delivery Charge: ₹${deliveryCharge}</p>`;
     } else {
-      summaryHTML = "Your cart is empty.";
+      summaryHTML += `<p style="color:green;font-weight:bold;">Free Delivery</p>`;
     }
 
-    document.getElementById("orderSummary").innerHTML = summaryHTML;
-    document.getElementById("orderSummaryField").value =
-      cart.map(i => `${i.name} - ₹${i.price}`).join(", ") + ` | Total: ₹${total}`;
+    summaryHTML += `<strong>Total: ₹${total + deliveryCharge}</strong>`;
+  } else {
+    summaryHTML = "Your cart is empty.";
+  }
 
-    document.getElementById("orderForm").addEventListener("submit", function (e) {
-      e.preventDefault();
+  document.getElementById("orderSummary").innerHTML = summaryHTML;
+  document.getElementById("orderSummaryField").value =
+    cart.map(i => `${i.name} - ₹${i.price}`).join(", ") +
+    (deliveryCharge > 0 ? ` | Delivery: ₹${deliveryCharge}` : " | Free Delivery") +
+    ` | Total: ₹${total + deliveryCharge}`;
 
-      const form = e.target;
-      const formData = new FormData(form);
+  document.getElementById("orderForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-      const district = document.getElementById("district").value.trim().toLowerCase();
-      const pincode = document.getElementById("pincode").value.trim();
+    const form = e.target;
+    const formData = new FormData(form);
 
-      // Define delivery days by district or pincode
-      // Define delivery days by district or pincode
-const deliveryMapping = {
-  'chennai': 7,
-  'madurai': 8,
-  'coimbatore': 8,
-  'tirunelveli': 8,
-  'cuddalore': 3,
-  'trichy': 4,
-  'perambalur': 4,
-  'kallakuruchi':4,
-  '600001': 7,
-  '627001': 8,
-  'default': 10
-};
+    const district = document.getElementById("district").value.trim().toLowerCase();
+    const pincode = document.getElementById("pincode").value.trim();
 
-let deliveryDays = deliveryMapping[district] || deliveryMapping[pincode] || deliveryMapping['default'];
+    const deliveryMapping = {
+      'chennai': 7,
+      'madurai': 8,
+      'coimbatore': 8,
+      'tirunelveli': 8,
+      'cuddalore': 3,
+      'trichy': 4,
+      'perambalur': 4,
+      'kallakuruchi': 4,
+      '600001': 7,
+      '627001': 8,
+      'default': 10
+    };
 
+    let deliveryDays = deliveryMapping[district] || deliveryMapping[pincode] || deliveryMapping['default'];
 
-      const today = new Date();
-      today.setDate(today.getDate() + deliveryDays);
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      const deliveryDate = today.toLocaleDateString(undefined, options);
+    const today = new Date();
+    today.setDate(today.getDate() + deliveryDays);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const deliveryDate = today.toLocaleDateString(undefined, options);
 
-      // Update popup message
-      document.querySelector(".popup-content p").innerHTML = `Your order has been placed successfully 🎉<br>
+    document.querySelector(".popup-content p").innerHTML = `Your order has been placed successfully 🎉<br>
        Note: Your order will get confirmed only after <br>
        payment.We’ll get back to you shortly<br>
         regarding the payment.<br>
       
       <strong>Expected delivery:</strong> ${deliveryDate}`;
 
-      fetch("https://formsubmit.co/theyarnnest.in@gmail.com", {
-        method: "POST",
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      })
-      .then(response => {
-       if (response.ok) {
-  // Save order locally to localStorage
-    const newOrder = {
-    name: formData.get("Name"),
-    email: formData.get("Email"),
-    phone: formData.get("Phone"),
-    address: `${formData.get("Door Number")}, ${formData.get("Street Name")}, ${formData.get("Taluk")}, ${formData.get("TownCity")}, ${formData.get("District")}, ${formData.get("Pincode")}`,
-    items: cart.map(i => `${i.name} - ₹${i.price}`).join(", "),
-    total: total,
-    deliveryDate: deliveryDate
-  };
+    fetch("https://formsubmit.co/theyarnnest.in@gmail.com", {
+      method: "POST",
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        const newOrder = {
+          name: formData.get("Name"),
+          email: formData.get("Email"),
+          phone: formData.get("Phone"),
+          address: `${formData.get("Door Number")}, ${formData.get("Street Name")}, ${formData.get("Taluk")}, ${formData.get("TownCity")}, ${formData.get("District")}, ${formData.get("Pincode")}`,
+          items: cart.map(i => `${i.name} - ₹${i.price}`).join(", "),
+          delivery: deliveryCharge > 0 ? `₹${deliveryCharge}` : "Free",
+          total: total + deliveryCharge,
+          deliveryDate: deliveryDate
+        };
 
-  const previousOrders = JSON.parse(localStorage.getItem("orders")) || [];
-  previousOrders.push(newOrder);
-  localStorage.setItem("orders", JSON.stringify(previousOrders));
+        const previousOrders = JSON.parse(localStorage.getItem("orders")) || [];
+        previousOrders.push(newOrder);
+        localStorage.setItem("orders", JSON.stringify(previousOrders));
 
+        document.getElementById("customPopup").style.display = "flex";
+        form.reset();
+        localStorage.removeItem("cart");
+        document.getElementById("orderSummary").innerHTML = "Your cart is now empty.";
 
-  // Show popup
-  document.getElementById("customPopup").style.display = "flex";
-  form.reset();
-  localStorage.removeItem("cart");
-  document.getElementById("orderSummary").innerHTML = "Your cart is now empty.";
-
-  // Redirect to myorders.html after popup button
-  document.querySelector("#customPopup button").onclick = function () {
-    window.location.href = "myorders.html";
-  };
-}
-
-      });
+        document.querySelector("#customPopup button").onclick = function () {
+          window.location.href = "myorders.html";
+        };
+      }
     });
-  </script>
+  });
+</script>
+
 
   <div id="customPopup" style="display: none;">
     <div class="popup-content">
