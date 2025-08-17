@@ -326,6 +326,16 @@
         flex-direction: column;
         align-items: center;
       }
+
+      .product button.share-btn {
+  margin-left: 5px;
+  background-color: #6a1b9a;
+}
+
+.product button.share-btn:hover {
+  background-color: #4a0072;
+}
+
     }
 
   </style>
@@ -359,186 +369,196 @@
 
 <!-- Products -->
 <div class="products">
-  <div class="product">
-    <img src="rosecrochetbookmark.jpg" onclick="showLightbox(this.src)" alt="Crochet Bookmark" />
-    <h3>Crochet <br/>
-       Bookmark</h3>
-    <p>₹29</p>
-    <button onclick="addToCart('Crochet Bookmark(Rose)', 29)">Add to Cart</button>
-    <button onclick="orderNow('Crochet Bookmark(Rose)', 29)">Order Now</button>
-  </div>
-    <div class="product">
-    <img src="rosekeychain.jpg" onclick="showLightbox(this.src)" alt="Rose Keychain" />
-    <h3>Rose <br/>
-      Keychain</h3>
-    <p>₹45</p>
-    <button onclick="addToCart('Rose Keychain', 45)">Add to Cart</button>
-    <button onclick="orderNow('Rose Keychain', 45)">Order Now</button>
-  </div>
+  <div class="product" id="crochet-bookmark-rose">
+  <img src="rosecrochetbookmark.jpg" onclick="showLightbox(this.src)" alt="Crochet Bookmark" />
+  <h3>Crochet <br/> Bookmark</h3>
+  <p>₹29</p>
+  <button onclick="addToCart('Crochet Bookmark(Rose)', 29)">Add to Cart</button><br/>
+  <button onclick="orderNow('Crochet Bookmark(Rose)', 29)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Crochet Bookmark(Rose)', 'crochet-bookmark-rose')">Share</button>
 
-    <div class="product">
-    <img src="tulipbouquet1.jpg" onclick="showLightbox(this.src)" alt="Tulip Treasure Keychain" />
-    <h3>Tulip Treasure <br/>
-      Keychain</h3>
-    <p>₹45</p>
-    <button onclick="addToCart('Tulip Treasure Keychain', 45)">Add to Cart</button>
-    <button onclick="orderNow('Tulip Treasure Keychain', 45)">Order Now</button>
-  </div>
-  <div class="product">
-    <img src="Bowhairclip2.jpg" onclick="showLightbox(this.src)" alt="Bow Hair Clip" />
-    <h3>Bow Hair<br/>
-    <div>Clip</div></h3>
-    <p>₹49</p>
-    <button onclick="addToCart('Bow Hair Clip(Red)', 49)">Add to Cart</button>
-    <button onclick="orderNow('Bow Hair Clip(Red)', 49)">Order Now</button>
-  </div>
+</div>
 
-  <div class="product">
-    <img src="Pearlhairbandscrunchie.jpg" onclick="showLightbox(this.src)" alt="Pearl Hair Band Scrunchie" />
-    <h3>Pearl Hair Band <br/>
-      Scrunchie</h3>
-    <p>₹49</p>
-    <button onclick="addToCart('Pearl Hair Band Scrunchie', 49)">Add to Cart</button>
-    <button onclick="orderNow('Pearl Hair Band Scrunchie', 49)">Order Now</button>
-  </div>
-  <div class="product">
-    <img src="Greenhairbandscrunchie.jpg" onclick="showLightbox(this.src)" alt="Hair Band Scrunchie" />
-    <h3>Hair Band<br/>
-       Scrunchie</h3>
-    <p>₹39</p>
-    <button onclick="addToCart('Hair Band Scrunchie(Green)', 39)">Add to Cart</button>
-    <button onclick="orderNow('Hair Band Scrunchie(Green)', 39)">Order Now</button>
-  </div>
-  <div class="product">
-    <img src="Woolen hair band.jpg" onclick="showLightbox(this.src)" alt="Hair Band Scrunchie" />
-    <h3>Hair Band <br/>
-      Scrunchie</h3>
-    <p>₹39</p>
-    <button onclick="addToCart('Hair Band Scrunchie(Blue)', 39)">Add to Cart</button>
-    <button onclick="orderNow('Hair Band Scrunchie(Blue)', 39)">Order Now</button>
-  </div>
+   <div class="product" id="rose-keychain">
+  <img src="rosekeychain.jpg" onclick="showLightbox(this.src)" alt="Rose Keychain" />
+  <h3>Rose <br/> Keychain</h3>
+  <p>₹45</p>
+  <button onclick="addToCart('Rose Keychain', 45)">Add to Cart</button><br/>
+  <button onclick="orderNow('Rose Keychain', 45)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Rose Keychain','rose-keychain')">Share</button>
+</div>
 
-   <div class="product">
-    <img src="pink bookmark.jpg" onclick="showLightbox(this.src)" alt="Crochet Bookmark" />
-    <h3>Crochet <br/>
-      Bookmark</h3>
-    <p>₹29</p>
-    <button onclick="addToCart('Crochet Bookmark(Peach)', 29)">Add to Cart</button>
-    <button onclick="orderNow('Crochet Bookmark(Peach)', 29)">Order Now</button>
-  </div>
+<div class="product" id="tulip-keychain">
+  <img src="tulipbouquet1.jpg" onclick="showLightbox(this.src)" alt="Tulip Treasure Keychain" />
+  <h3>Tulip Treasure <br/> Keychain</h3>
+  <p>₹45</p>
+  <button onclick="addToCart('Tulip Treasure Keychain', 45)">Add to Cart</button><br/>
+  <button onclick="orderNow('Tulip Treasure Keychain', 45)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Tulip Treasure Keychain','tulip-keychain')">Share</button>
+</div>
 
+<div class="product" id="bow-clip-red">
+  <img src="Bowhairclip2.jpg" onclick="showLightbox(this.src)" alt="Bow Hair Clip" />
+  <h3>Bow Hair<br/><div>Clip</div></h3>
+  <p>₹49</p>
+  <button onclick="addToCart('Bow Hair Clip(Red)', 49)">Add to Cart</button><br/>
+  <button onclick="orderNow('Bow Hair Clip(Red)', 49)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Bow Hair Clip(Red)','bow-clip-red')">Share</button>
+</div>
 
-   <div class="product">
-    <img src="purple flower book mark.jpg" onclick="showLightbox(this.src)" alt="Crochet Bookmark" />
-    <h3>Crochet <br/>
-      Bookmark</h3>
-    <p>₹29</p>
-    <button onclick="addToCart('Crochet Bookmark(Purple)', 29)">Add to Cart</button>
-    <button onclick="orderNow('Crochet Bookmark(Purple)', 29)">Order Now</button>
-  </div>
+<div class="product" id="pearl-scrunchie">
+  <img src="Pearlhairbandscrunchie.jpg" onclick="showLightbox(this.src)" alt="Pearl Hair Band Scrunchie" />
+  <h3>Pearl Hair Band <br/> Scrunchie</h3>
+  <p>₹49</p>
+  <button onclick="addToCart('Pearl Hair Band Scrunchie', 49)">Add to Cart</button><br/>
+  <button onclick="orderNow('Pearl Hair Band Scrunchie', 49)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Pearl Hair Band Scrunchie','pearl-scrunchie')">Share</button>
+</div>
 
-  <div class="product">
-    <img src="flower.jpg" onclick="showLightbox(this.src)" alt="Pink Crochet Tulip" />
-    <h3>Pink Crochet <br/>
-      Tulip</h3>
-    <p>₹65</p>
-    <button onclick="addToCart('Pink Crochet Tulip', 65)">Add to Cart</button>
-    <button onclick="orderNow('Pink Crochet Tulip', 65)">Order Now</button>
-  </div>
+<div class="product" id="green-scrunchie">
+  <img src="Greenhairbandscrunchie.jpg" onclick="showLightbox(this.src)" alt="Hair Band Scrunchie" />
+  <h3>Hair Band<br/> Scrunchie</h3>
+  <p>₹39</p>
+  <button onclick="addToCart('Hair Band Scrunchie(Green)', 39)">Add to Cart</button><br/>
+  <button onclick="orderNow('Hair Band Scrunchie(Green)', 39)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Hair Band Scrunchie(Green)','green-scrunchie')">Share</button>
+</div>
 
-   <div class="product">
-    <img src="red hair band.jpg" onclick="showLightbox(this.src)" alt="Hair Band Scrunchie" />
-    <h3>Hair Band<br/>
-       Scrunchie</h3>
-    <p>₹39</p>
-    <button onclick="addToCart('Hair Band Scrunchie(Red)', 39)">Add to Cart</button>
-    <button onclick="orderNow('Hair Band Scrunchie(Red)', 39)">Order Now</button>
-  </div>
-  
-  <div class="product">
-    <img src="sunflower key chain.jpg" onclick="showLightbox(this.src)" alt="Sunflower Keychain" />
-    <h3>Sunflower<br/>
-       Keychain</h3>
-    <p>₹49</p>
-    <button onclick="addToCart('Sunflower Keychain', 49)">Add to Cart</button>
-    <button onclick="orderNow('Sunflower Keychain', 49)">Order Now</button>
-  </div>
-<div class="product">
-    <img src="lavenderbookmark.jpg" onclick="showLightbox(this.src)" alt="Crochet Bookmark" />
-    <h3>Crochet <br/>
-      Bookmark</h3>
-    <p>₹29</p>
-    <button onclick="addToCart('Crochet Bookmark(Lavender)', 29)">Add to Cart</button>
-    <button onclick="orderNow('Crochet Bookmark(Lavender)', 29)">Order Now</button>
-  </div>
+<div class="product" id="blue-scrunchie">
+  <img src="Woolen hair band.jpg" onclick="showLightbox(this.src)" alt="Hair Band Scrunchie" />
+  <h3>Hair Band <br/> Scrunchie</h3>
+  <p>₹39</p>
+  <button onclick="addToCart('Hair Band Scrunchie(Blue)', 39)">Add to Cart</button><br/>
+  <button onclick="orderNow('Hair Band Scrunchie(Blue)', 39)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Hair Band Scrunchie(Blue)','blue-scrunchie')">Share</button>
+</div>
 
-  <div class="product">
-    <img src="yellowflower.jpg" onclick="showLightbox(this.src)" alt="Yellow Crochet Lily" />
-    <h3>Yellow Crochet <br/>
-      Lily</h3>
-    <p>₹85</p>
-    <button onclick="addToCart('Yellow Crochet Lily ', 85)">Add to Cart</button>
-    <button onclick="orderNow('Yellow Crochet Lily', 85)">Order Now</button>
-  </div>
+<div class="product" id="peach-bookmark">
+  <img src="pink bookmark.jpg" onclick="showLightbox(this.src)" alt="Crochet Bookmark" />
+  <h3>Crochet <br/> Bookmark</h3>
+  <p>₹29</p>
+  <button onclick="addToCart('Crochet Bookmark(Peach)', 29)">Add to Cart</button><br/>
+  <button onclick="orderNow('Crochet Bookmark(Peach)', 29)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Crochet Bookmark(Peach)','peach-bookmark')">Share</button>
+</div>
 
-   <div class="product">
+<div class="product" id="purple-bookmark">
+  <img src="purple flower book mark.jpg" onclick="showLightbox(this.src)" alt="Crochet Bookmark" />
+  <h3>Crochet <br/> Bookmark</h3>
+  <p>₹29</p>
+  <button onclick="addToCart('Crochet Bookmark(Purple)', 29)">Add to Cart</button><br/>
+  <button onclick="orderNow('Crochet Bookmark(Purple)', 29)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Crochet Bookmark(Purple)','purple-bookmark')">Share</button>
+</div>
+
+<div class="product" id="pink-tulip">
+  <img src="flower.jpg" onclick="showLightbox(this.src)" alt="Pink Crochet Tulip" />
+  <h3>Pink Crochet <br/> Tulip</h3>
+  <p>₹65</p>
+  <button onclick="addToCart('Pink Crochet Tulip', 65)">Add to Cart</button><br/>
+  <button onclick="orderNow('Pink Crochet Tulip', 65)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Pink Crochet Tulip','pink-tulip')">Share</button>
+</div>
+
+<div class="product" id="red-scrunchie">
+  <img src="red hair band.jpg" onclick="showLightbox(this.src)" alt="Hair Band Scrunchie" />
+  <h3>Hair Band<br/> Scrunchie</h3>
+  <p>₹39</p>
+  <button onclick="addToCart('Hair Band Scrunchie(Red)', 39)">Add to Cart</button><br/>
+  <button onclick="orderNow('Hair Band Scrunchie(Red)', 39)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Hair Band Scrunchie(Red)','red-scrunchie')">Share</button>
+</div>
+
+<div class="product" id="sunflower-keychain">
+  <img src="sunflower key chain.jpg" onclick="showLightbox(this.src)" alt="Sunflower Keychain" />
+  <h3>Sunflower<br/> Keychain</h3>
+  <p>₹49</p>
+  <button onclick="addToCart('Sunflower Keychain', 49)">Add to Cart</button><br/>
+  <button onclick="orderNow('Sunflower Keychain', 49)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Sunflower Keychain','sunflower-keychain')">Share</button>
+</div>
+
+<div class="product" id="lavender-bookmark">
+  <img src="lavenderbookmark.jpg" onclick="showLightbox(this.src)" alt="Crochet Bookmark" />
+  <h3>Crochet <br/> Bookmark</h3>
+  <p>₹29</p>
+  <button onclick="addToCart('Crochet Bookmark(Lavender)', 29)">Add to Cart</button><br/>
+  <button onclick="orderNow('Crochet Bookmark(Lavender)', 29)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Crochet Bookmark(Lavender)','lavender-bookmark')">Share</button>
+</div>
+
+<div class="product" id="yellow-lily">
+  <img src="yellowflower.jpg" onclick="showLightbox(this.src)" alt="Yellow Crochet Lily" />
+  <h3>Yellow Crochet <br/> Lily</h3>
+  <p>₹85</p>
+  <button onclick="addToCart('Yellow Crochet Lily ', 85)">Add to Cart</button><br/>
+  <button onclick="orderNow('Yellow Crochet Lily', 85)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Yellow Crochet Lily','yellow-lily')">Share</button>
+</div>
+
+<div class="product" id="dining-mat-red">
   <img src="diningcrochet2.jpg" onclick="showLightbox(this.src)" alt="Crocheted Dining Mat" />
-  <h3>Crocheted<br/>
-     Dining Mat</h3>
+  <h3>Crocheted<br/> Dining Mat</h3>
   <p>₹39</p>
-  <button onclick="addToCart('Crocheted Dining Mat(Red)', 39)">Add to Cart</button>
+  <button onclick="addToCart('Crocheted Dining Mat(Red)', 39)">Add to Cart</button><br/>
   <button onclick="orderNow('Crocheted Dining Mat(Red)', 39)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Crocheted Dining Mat(Red)','dining-mat-red')">Share</button>
 </div>
 
-<div class="product">
+<div class="product" id="dining-mat-pink">
   <img src="diningcrochet1.jpg" onclick="showLightbox(this.src)" alt="Crocheted Dining Mat" />
-  <h3>Crocheted <br/>
-    Dining Mat</h3>
+  <h3>Crocheted <br/> Dining Mat</h3>
   <p>₹39</p>
-  <button onclick="addToCart('Crocheted Dining Mat(Pink)', 39)">Add to Cart</button>
+  <button onclick="addToCart('Crocheted Dining Mat(Pink)', 39)">Add to Cart</button><br/>
   <button onclick="orderNow('Crocheted Dining Mat(Pink)', 39)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Crocheted Dining Mat(Pink)','dining-mat-pink')">Share</button>
 </div>
-<div class="product">
+
+<div class="product" id="bouquet-3">
   <img src="bouquet1.jpg" onclick="showLightbox(this.src)" alt="Bouquet(Pack of 3)" />
-  <h3>Bouquet<br/>
-    (Pack of 3)</h3>
+  <h3>Bouquet<br/> (Pack of 3)</h3>
   <p>₹249</p>
-  <button onclick="addToCart('Bouquet(Pack of 3)', 249)">Add to Cart</button>
+  <button onclick="addToCart('Bouquet(Pack of 3)', 249)">Add to Cart</button><br/>
   <button onclick="orderNow('Bouquet(Pack of 3)', 249)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Bouquet(Pack of 3)','bouquet-3')">Share</button>
 </div>
-  <div class="product">
-    <img src="Bow Hair clip.jpg" onclick="showLightbox(this.src)" alt="Bow Hair Clip" />
-    <h3>Bow Hair<br/>
-    <div>Clip</div></h3>
-    <p>₹29</p>
-    <button onclick="addToCart('Bow Hair Clip', 29)">Add to Cart</button>
-    <button onclick="orderNow('Bow Hair Clip', 29)">Order Now</button>
-  </div>
-  
-  <div class="product">
-    <img src="mobile case.jpg" onclick="showLightbox(this.src)" alt="Crocheted Mobile Case" />
-    <h3>Crocheted <br/>
-      Mobile Case</h3>
-    <p>₹129</p>
-    <button onclick="addToCart('Crocheted Mobile Case', 129)">Add to Cart</button>
-    <button onclick="orderNow('Crocheted Mobile Case', 129)">Order Now</button>
-  </div>
-  <div class="product">
-    <img src="Bouquet.jpg" onclick="showLightbox(this.src)" alt="Bouquet(Pack of 6)" />
-    <h3>Bouquet<br/>
-      (Pack of 6)</h3>
-    <p>₹549</p>
-    <button onclick="addToCart('Bouquet(Pack of 6)', 549)">Add to Cart</button>
-    <button onclick="orderNow('Bouquet(Pack of 6)', 549)">Order Now</button>
-  </div>
-  <div class="product">
-    <img src="Keychain.jpg" onclick="showLightbox(this.src)" alt="Keychain" />
-    <h3>Crochet Bell Flower <br/>
-      Keychain</h3>
-    <p>₹29</p>
-    <button onclick="addToCart('Crochet Bell Flower Keychain', 29)">Add to Cart</button>
-    <button onclick="orderNow('Crochet Bell Flower Keychain', 29)">Order Now</button>
-  </div>
+
+<div class="product" id="bow-clip">
+  <img src="Bow Hair clip.jpg" onclick="showLightbox(this.src)" alt="Bow Hair Clip" />
+  <h3>Bow Hair<br/><div>Clip</div></h3>
+  <p>₹29</p>
+  <button onclick="addToCart('Bow Hair Clip', 29)">Add to Cart</button><br/>
+  <button onclick="orderNow('Bow Hair Clip', 29)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Bow Hair Clip','bow-clip')">Share</button>
+</div>
+
+<div class="product" id="mobile-case">
+  <img src="mobile case.jpg" onclick="showLightbox(this.src)" alt="Crocheted Mobile Case" />
+  <h3>Crocheted <br/> Mobile Case</h3>
+  <p>₹129</p>
+  <button onclick="addToCart('Crocheted Mobile Case', 129)">Add to Cart</button><br/>
+  <button onclick="orderNow('Crocheted Mobile Case', 129)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Crocheted Mobile Case','mobile-case')">Share</button>
+</div>
+
+<div class="product" id="bouquet-6">
+  <img src="Bouquet.jpg" onclick="showLightbox(this.src)" alt="Bouquet(Pack of 6)" />
+  <h3>Bouquet<br/> (Pack of 6)</h3>
+  <p>₹549</p>
+  <button onclick="addToCart('Bouquet(Pack of 6)', 549)">Add to Cart</button><br/>
+  <button onclick="orderNow('Bouquet(Pack of 6)', 549)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Bouquet(Pack of 6)','bouquet-6')">Share</button>
+</div>
+
+<div class="product" id="bellflower-keychain">
+  <img src="Keychain.jpg" onclick="showLightbox(this.src)" alt="Keychain" />
+  <h3>Crochet Bell Flower <br/> Keychain</h3>
+  <p>₹29</p>
+  <button onclick="addToCart('Crochet Bell Flower Keychain', 29)">Add to Cart</button><br/>
+  <button onclick="orderNow('Crochet Bell Flower Keychain', 29)">Order Now</button>
+  <button class="share-btn" onclick="shareProduct('Crochet Bell Flower Keychain','bellflower-keychain')">Share</button>
+</div>
+
   <!-- Keep your product items exactly as before -->
   <!-- ... your product HTML here ... -->
 </div>
@@ -606,6 +626,32 @@
     localStorage.setItem("cart", JSON.stringify(cart));
     window.location.href = "order.html";
   }
+  function shareProduct(name, id) {
+  // Generate a direct link to the product using its id
+  const productUrl = window.location.origin + window.location.pathname + "#" + id;
+
+  const shareData = {
+    title: "The Yarn Nest",
+    text: `Check out this product: ${name} 🧶✨`,
+    url: productUrl
+  };
+
+  if (navigator.share) {
+    navigator.share(shareData).catch(err => console.log("Share cancelled", err));
+  } else {
+    // Fallback: copy link to clipboard
+    navigator.clipboard.writeText(productUrl).then(() => {
+      const popup = document.getElementById("popup");
+      popup.textContent = "🔗 Product link copied!";
+      popup.classList.add("show");
+      setTimeout(() => {
+        popup.classList.remove("show");
+        popup.textContent = "🧺 Added to cart!";
+      }, 2000);
+    });
+  }
+}
+
 </script>
 
 <div id="popup" class="popup-message">🧺 Added to cart!</div>
