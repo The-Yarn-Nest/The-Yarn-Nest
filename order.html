@@ -301,7 +301,7 @@
     });
     summaryHTML += "</ul>";
 
-    if (total < 200) {
+    if (total < 190) {
       deliveryCharge = 50;
       summaryHTML += `<p>Delivery Charge: ₹${deliveryCharge}</p>`;
     } else {
@@ -329,14 +329,14 @@
     const pincode = document.getElementById("pincode").value.trim();
 
     const deliveryMapping = {
-      'chennai': 7,
+      'chennai': 8,
       'madurai': 8,
       'coimbatore': 8,
       'tirunelveli': 8,
-      'cuddalore': 3,
-      'trichy': 4,
-      'perambalur': 4,
-      'kallakuruchi': 4,
+      'cuddalore': 5,
+      'trichy': 6,
+      'perambalur': 6,
+      'kallakuruchi': 6,
       '600001': 7,
       '627001': 8,
       'default': 10
