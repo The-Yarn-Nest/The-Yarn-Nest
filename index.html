@@ -12,22 +12,32 @@
 
   <meta charset="UTF-8">
   <title>The Yarn Nest</title>
+  <meta name="description" content="The Yarn Nest - Handmade crochet & yarn crafts made with love.">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
+  <!-- ✅ Favicon -->
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 
-  <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
-  <meta property="og:title" content="The Yarn Nest">
-  <meta property="og:description" content="Handmade yarn, cozy crafts & creative nests.">
-  <meta property="og:image" content="https://www.theyarnnest.in/preview.png">
-  <meta property="og:url" content="https://www.theyarnnest.in">
-  <meta property="og:type" content="website">
+  <!-- ✅ Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "The Yarn Nest",
+    "url": "https://www.theyarnnest.in",
+    "logo": "https://www.theyarnnest.in/favicon.png",
+    "sameAs": []
+  }
+  </script>
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="The Yarn Nest">
-  <meta name="twitter:description" content="Handmade yarn, cozy crafts & creative nests.">
-  <meta name="twitter:image" content="https://www.theyarnnest.in/preview.png">
+  <!-- ✅ Website Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "The Yarn Nest",
+    "url": "https://www.theyarnnest.in"
+  }
+  </script>
 
   <style>
     * {
@@ -51,21 +61,18 @@
       height: 100vh;
       font-family: 'Segoe UI', sans-serif;
     }
-
     .logo {
       width: 150px;
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 20px;
     }
-
     .loading-text {
       font-size: 18px;
       color: #6a1b9a;
       display: flex;
       align-items: center;
     }
-
     .dot {
       height: 8px;
       width: 8px;
@@ -74,15 +81,12 @@
       border-radius: 50%;
       animation: bounce 1.4s infinite;
     }
-
     .dot:nth-child(2) {
       animation-delay: 0.2s;
     }
-
     .dot:nth-child(3) {
       animation-delay: 0.4s;
     }
-
     @keyframes bounce {
       0%, 80%, 100% {
         transform: scale(0.8);
