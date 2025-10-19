@@ -172,6 +172,11 @@
     </style>
 
 <script>
+  // Check if user already signed up
+if (localStorage.getItem('signup') === 'true') {
+    window.location.href = './login.html';
+}
+
 const signup = document.getElementById("signupbutton");
 const login = document.getElementById("loginbutton");
 const firstname = document.getElementById("firstname");
