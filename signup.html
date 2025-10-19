@@ -35,6 +35,7 @@
       background: linear-gradient(135deg, #f8e1f4, #d1c4ff);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
+      overflow: hidden;
     }
 
     div {
@@ -172,11 +173,6 @@
     </style>
 
 <script>
-  // Check if user already signed up
-if (localStorage.getItem('signup') === 'true') {
-    window.location.href = './login.html';
-}
-
 const signup = document.getElementById("signupbutton");
 const login = document.getElementById("loginbutton");
 const firstname = document.getElementById("firstname");
