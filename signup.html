@@ -126,6 +126,7 @@
       z-index: 1000;
       justify-content: center;
       align-items: center;
+
     }
 
     #modalContent {
@@ -182,9 +183,18 @@ const lastname = document.getElementById("lastname");
 const email = document.getElementById("Email");
 const password = document.getElementById("password");
 
-signup.addEventListener('click', () => { signupfunc(); });
+// 🚀 Check if user already signed up — redirect to login page automatically
+window.addEventListener('load', () => {
+    const isSignedUp = localStorage.getItem('signup');
+    if (isSignedUp === 'true') {
+        // Redirect directly to login page
+        window.location.href = "./login.html";
+    }
+});
+
+signup.addEventListener('click', signupfunc);
 login.addEventListener('click', () => { 
-    window.location.href="./login.html"
+    window.location.href = "./login.html";
 });
 
 function signupfunc() {
@@ -193,6 +203,16 @@ function signupfunc() {
     const email_value = email.value.trim();
     const password_value = password.value.trim();
 
+    // 🧩 Check if this email already exists in localStorage
+    const storedEmail = localStorage.getItem('Email');
+
+    if (storedEmail && storedEmail === email_value) {
+        showModal("Already Have an Account!", 
+                  "The email <b>" + email_value + "</b> is already registered.<br>Please login instead.");
+        return;
+    }
+
+    // ✅ Normal signup validation
     if (firstname_value && lastname_value && email_value && password_value) {
         localStorage.setItem('Firstname', firstname_value);
         localStorage.setItem('Lastname', lastname_value);
@@ -207,10 +227,11 @@ function signupfunc() {
     }
 }
 
+// Optional navigation helpers
 function gotohomepage() { window.location.href = './home.html'; }
 function gotologinpage() { window.location.href = './login.html'; }
 
-// Modal alert function
+// 🎨 Modal alert function
 function showModal(title, message) {
     const modal = document.getElementById('customModal');
     document.getElementById('modalTitle').textContent = title;
@@ -222,5 +243,7 @@ function showModal(title, message) {
     okBtn.onclick = () => { modal.style.display = 'none'; };
 }
 </script>
+
+
 </body>
 </html>
